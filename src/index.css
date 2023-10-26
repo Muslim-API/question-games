@@ -1,0 +1,311 @@
+/* @import "./tailwindcss-config.js"; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.add-border {
+  border-color: currentColor;
+  border-width: 2px;
+}
+
+@media (min-width: 320px) and (max-width: 359px) {
+  .image-bg-home {
+    background-image: url("assets/mobile/homescreen.svg");
+  }
+  .image-bg-instruction {
+    background-image: url("assets/mobile/background.svg");
+  }
+  .image-bg-question {
+    background-image: url("assets/mobile/background-question.svg");
+  }
+
+  /* .screen-mobile {
+    display: block;
+    visibility: visible;
+  } */
+  .screen-desktop {
+    display: none;
+    visibility: hidden;
+  }
+
+  .instruction-text-label {
+    margin-bottom: -40px;
+    font-family: "BioRhyme";
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: 0em;
+    color: #fefeff;
+  }
+
+  .box-label-text {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  .box-instruction-text {
+    width: 202px;
+    height: 85px;
+    margin-bottom: -160px;
+    margin-top: 2px;
+  }
+
+  .instruction-text {
+    font-family: "BioRhyme";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 12px;
+    letter-spacing: 0em;
+    color: #601609;
+  }
+
+  .btn-next {
+    margin-top: -58px;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 411px) {
+  .image-bg-home {
+    background-image: url("assets/mobile/homescreen.svg");
+  }
+  .image-bg-instruction {
+    background-image: url("assets/mobile/background.svg");
+  }
+  .image-bg-question {
+    background-image: url("assets/mobile/background-question.svg");
+  }
+
+  /* .screen-mobile {
+    display: block;
+    visibility: visible;
+  } */
+  .screen-desktop {
+    display: none;
+    visibility: hidden;
+  }
+
+  .instruction-text-label {
+    margin-bottom: -46px;
+    font-family: "BioRhyme";
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: 0em;
+    color: #fefeff;
+  }
+  .box-label-text {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+  .box-instruction-text {
+    width: 240px;
+    margin-bottom: -195px;
+    height: 120px;
+  }
+  .instruction-text {
+    font-family: "BioRhyme";
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    color: #601609;
+  }
+  .btn-next {
+    margin-top: -70px;
+  }
+}
+
+/* ============================================== */
+/* iPhone4/Android landscape (& narrow browser)   */
+/*                                        480x320 */
+/* ============================================== */
+@media (min-width: 412px) and (max-width: 639px) {
+  .image-bg-home {
+    background-image: url("assets/mobile/homescreen.svg");
+  }
+  .image-bg-instruction {
+    background-image: url("assets/mobile/background.svg");
+  }
+  .image-bg-question {
+    background-image: url("assets/mobile/background-question.svg");
+  }
+
+  /* .screen-mobile {
+    display: block;
+    visibility: visible;
+  } */
+  .screen-desktop {
+    display: none;
+    visibility: hidden;
+  }
+  .instruction-text-label {
+    margin-bottom: -46px;
+    font-family: "BioRhyme";
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: 0em;
+    color: #fefeff;
+  }
+  .box-label-text {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+  .box-instruction-text {
+    margin-bottom: -225px;
+    width: 265px;
+    height: 135px;
+    margin-top: 2px;
+  }
+  .instruction-text {
+    font-family: "BioRhyme";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    color: #601609;
+  }
+  .btn-next {
+    margin-top: -70px;
+  }
+}
+
+/* sm	640px */
+@media (min-width: 640px) {
+  .image-bg-home {
+    background-image: url("assets/bg-landscape.svg");
+  }
+  .image-bg-instruction {
+    background-image: url("assets/bg-instruction.svg");
+  }
+  .image-bg-question {
+    background-image: url("assets/bg-instruction.svg");
+  }
+
+  .screen-mobile {
+    display: none;
+    visibility: hidden;
+  }
+  /* .screen-desktop {
+    display: block;
+    visibility: visible;
+  } */
+
+  .instruction-text-label {
+    margin-bottom: -46px;
+    font-family: "BioRhyme";
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: 0em;
+    color: #fefeff;
+  }
+
+  .box-instruction-text {
+    width: 275px;
+    margin-bottom: -255px;
+    height: 165px;
+  }
+
+  .instruction-text {
+    font-family: "BioRhyme";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 12px;
+    letter-spacing: 0em;
+    color: #601609;
+  }
+
+  .btn-next {
+    margin-top: -70px;
+  }
+  .btn-submit {
+    margin-left: -1rem;
+  }
+}
+
+/* md	768px	 */
+@media (min-width: 768px) {
+  .image-bg-home {
+    background-image: url("assets/bg-landscape.svg");
+  }
+  .image-bg-instruction {
+    background-image: url("assets/bg-instruction.svg");
+  }
+  .image-bg-question {
+    background-image: url("assets/bg-instruction.svg");
+  }
+
+  .screen-mobile {
+    display: none;
+    visibility: hidden;
+  }
+  /* .screen-desktop {
+    display: block;
+    visibility: visible;
+  } */
+
+  .instruction-text-label {
+    margin-bottom: -46px;
+    font-family: "BioRhyme";
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: 0em;
+    color: #fefeff;
+  }
+
+  .box-instruction-text {
+    width: 275px;
+    margin-bottom: -255px;
+    height: 165px;
+  }
+  .instruction-text {
+    font-family: "BioRhyme";
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    color: #601609;
+  }
+
+  .btn-next {
+    margin-top: -70px;
+  }
+
+  .btn-submit {
+    margin-left: 0rem;
+  }
+}
+/* lg	1024px	 */
+@media (min-width: 1024px) {
+  .btn-submit {
+    margin-left: -4rem;
+  }
+}
+/* xl	1280px	 */
+@media (min-width: 1280px) {
+  .btn-submit {
+    margin-left: -8rem;
+  }
+}
+/* 2xl	1536px	 */
+@media (min-width: 1536px) {
+  .btn-submit {
+    margin-left: -15rem;
+  }
+}
