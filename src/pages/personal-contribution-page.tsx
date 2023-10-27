@@ -10,6 +10,7 @@ import ecoHobbyist from "../assets/result/eco-hobbyist.svg";
 import ecoLegend from "../assets/result/eco-legend.svg";
 import thanksPlaying from "../assets/result/thanks-playing.svg";
 import SliderImage from "../components/carousel/ResultSlider";
+import avatar from "../assets/avatar/avatar_2.svg";
 import HeaderSoundAndBackClose from "../components/mobile/HeaderSoundAndClose";
 import TextUserName from "../components/text/TextUserName";
 
@@ -20,10 +21,14 @@ import SharePage from "../components/ModalsShare";
 
 const ResultPage = () => {
   const { state: dataQuestions } = useLocation();
+  const { state: userName } = useLocation();
   const navigate = useNavigate();
   const backgroundImageStyle = {
     backgroundImage: `url(${background})`,
   };
+
+  console.log("dataQuestionsdataQuestionsdataQuestions", dataQuestions)
+
 
   const textScoreBoard = {
     fontFamily: "BioRhyme",
@@ -58,13 +63,14 @@ const ResultPage = () => {
     },
   ];
 
-  const data: { [key: string]: number } = dataQuestions ?? {};
+  const data: { [key: string]: number } = dataQuestions.dataQuestions ?? {};
   const total: number = Object.values(data).reduce(
     (acc, value) => acc + value,
     0
   );
 
   const renderImage = () => {
+    return <img src={avatar} alt="" />;
     switch (total) {
       case 0:
         return <img src={thanksPlaying} alt="" />;
@@ -87,14 +93,35 @@ const ResultPage = () => {
     if (dataQuestions) {
       return (
         <div>
-          {renderText("YOU ARE AN")}
-          {renderText(ECO_LEVEL[total])}
-          {renderQuestionScore(total)}
+          {renderQuestionScore(total+"")}
         </div>
       );
     }
     return renderNoDataFound();
   };
+
+  const renderBottomText = () => {
+    return (
+      <div style={{fontSize:"15px", textAlign:"center"}} >
+        {"Thank you for doing your part for sustainability!"}
+      </div>
+    );
+  };
+
+  
+
+  const renderNameText = () => {
+    if (userName) {
+      return (
+        <div style={{marginTop:"-66px"}}>
+          {userName.userName}
+        </div>
+      );
+    }
+    return renderNoDataFound();
+  };
+
+  
 
   const renderNoDataFound = () => {
     return (
@@ -109,20 +136,22 @@ const ResultPage = () => {
   const renderText = (label: string) => {
     return <div className="flex justify-center items-center">{label}</div>;
   };
+  
 
   const renderQuestionScore = (
-    label: string | number,
+    label: string,
     isNotFound?: boolean
   ) => {
     if (isNotFound) {
       return <div> </div>;
     }
+    let point = parseInt(label) * 10;
     return (
       <div
         style={{ fontSize: "11px" }}
         className="flex justify-center items-center text-center font-normal"
       >
-        You answered {label} out of 5 questions correctly.
+        You have contributed {point} points!
       </div>
     );
   };
@@ -135,11 +164,14 @@ const ResultPage = () => {
         {renderResultText()}
       </div>
       <div className="flex flex-col justify-center items-center">
-        {/* <div className="pb-6">{renderImage()}</div> */}
-        <div className="pb-6">
-          <SliderImage />
+        <div className="pb-6">{renderImage()}</div>
+        <div style={textScoreBoard} className="pb-4" >
+          {renderNameText()}
         </div>
-        <TextUserName />
+        <div style={textScoreBoard} className="pt-5 pb-4">
+          {renderBottomText()}
+        </div>
+        
         <ButtonBaseComponents
           image={buttonNext}
           label={"NEXT"}

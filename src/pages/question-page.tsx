@@ -128,7 +128,7 @@ const QuestionScreen = () => {
         ...prevState,
         [numberOfQuestion ?? "1"]: validateAnswer,
       }));
-      navigate("/personalization-page", { state: questionResults });
+      navigate("/personalization-page", { state: {questionResults} });
     }
   };
 

@@ -32,10 +32,13 @@ const CssTextField = styled(TextField)({
   });
 
 
-export default function TextUserName() {
+
+
+export default function TextUserName(props: any) {
+  const {value, onChange} = props;
   return (
     <div className="pb-8">
-        <CssTextField id="custom-css-outlined-input" placeholder="Enter your name"/>
+        <CssTextField id="custom-css-outlined-input" placeholder="Enter your name" value={value} onChange={onChange}/>
     </div>
   );
 }
