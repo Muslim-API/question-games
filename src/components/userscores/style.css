@@ -1,0 +1,20 @@
+.waterfall-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Adjust the number of columns as needed */
+    gap: 20px; /* Adjust the gap between items as needed */
+  }
+  
+  .waterfall-item {
+    background-color: #3498db;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+  
+    &:hover {
+      transform: translateY(-10px);
+    }
+  }
+  

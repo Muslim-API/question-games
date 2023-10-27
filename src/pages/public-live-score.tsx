@@ -1,24 +1,80 @@
-// import { createClient } from "@supabase/supabase-js";
-// import { useNavigate } from "react-router-dom";
-// import { v4 as uuidv4 } from "uuid";
-const HTTP_CREATED = 201;
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import liveScore from "../assets/livescore/public-live-score.svg";
+import background from "../assets/mobile/background.svg";
+import playButtonImg from "../assets/mobile/button-play.svg";
 
-// const supabaseClient = createClient("google.com", "as");
 
-const SubmitYourScore = () => {
-const handleInserts = (payload: any) => {
-  console.log('Change received!', payload)
-}
+import HeaderSoundAndBackClose from "../components/mobile/HeaderSoundAndClose";
 
-// supabaseClient
-//   .channel('scoreboard')
-//   .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'scoreboard' }, handleInserts)
-//   .subscribe()
-    return (
-        <div className="item-center justify justify-center">
-           wawawa
-        </div>
-    )
-}
+import ButtonBaseComponents from "../components/mobile/ButtonBase";
 
-export default SubmitYourScore
+import ProgressScoreBoard from "../components/progress/scoreboard";
+
+import AvatarUserScore from "../components/userscores/avatar";
+
+const PublicLiveScore = () => {
+  const navigate = useNavigate();
+  // const supabase = useContext(SupabaseContext);
+  const [user, setUser] = useState<string>()
+
+  const handleInserts = (payload: any) => {
+    setUser(payload?.new?.player)
+    // {
+    //   player,
+    //   name,
+    //   avatar,
+
+    // }
+  }
+
+  // useEffect(() => {
+  //   const scoreboardChannel = supabase
+  //     .channel('scoreboard') 
+  //     .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'scoreboard' }, handleInserts)
+  //     .subscribe();
+  //   return () => {
+  //     scoreboardChannel.unsubscribe();
+  //   };
+  // }, [supabase]);
+
+  const backgroundImageStyle = {
+    backgroundImage: `url(${background})`,
+  };
+
+ 
+  const renderImage = () => {
+    return <img src={liveScore} alt="" />;
+  };
+
+
+  return (
+    <div className="h-screen bg-cover bg-center" style={backgroundImageStyle}>
+      <HeaderSoundAndBackClose onClickClose={() => navigate("/")} />
+      <div className="flex flex-col justify-center items-center pt-24">
+        <ProgressScoreBoard />
+      </div>
+      <div className="flex flex-col justify-center items-center pt-16">
+        <div className="pb-6">{renderImage()}</div>
+        <div className="pt-4 pb-4"><AvatarUserScore /></div>
+        <ButtonBaseComponents
+          image={playButtonImg}
+          label={"PLAY"}
+          classTextStyling={{
+            fontSize: "20px",
+            fontWeight: "700px"
+          }}
+          onClick={() => console.log("dadada")}
+        />
+        { user }
+        {/* <ul>
+        {scoreboard?.map((score: any) => (
+          <li key={score.id}>{score.username}: {score.score}</li>
+        ))}
+      </ul> */}
+      </div>
+    </div>
+  );
+};
+
+export default PublicLiveScore;
