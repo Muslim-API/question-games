@@ -5,7 +5,7 @@ import buttonNext from "../assets/result/button-next.svg";
 import thanksPlaying from "../assets/result/thanks-playing.svg";
 // import { createClient } from "@supabase/supabase-js";
 // import { v4 as uuidv4 } from "uuid";
-// import SliderImage from "../components/carousel/ResultSlider";
+import SliderImage from "../components/carousel/ResultSlider";
 import HeaderSoundAndBackClose from "../components/mobile/HeaderSoundAndClose";
 import TextUserName from "../components/text/TextUserName";
 
@@ -66,7 +66,12 @@ const ResultPage = () => {
   );
 
   const renderImage = () => {
-    return <img src={thanksPlaying} alt="" />;
+    // return <img src={thanksPlaying} alt="" />;
+    return (
+      <div style={{width:"100%"}}>
+        {SliderImage()}
+      </div>)
+    ;
   };
 
   const renderResultText = () => {
@@ -135,24 +140,23 @@ const ResultPage = () => {
         {renderResultText()}
       </div>
       <div className="flex flex-col justify-center items-center">
-        <div className="pb-6">{renderImage()}</div>
-        {/*
-        if 0 correct showing this
-        <img src={thanksPlaying} alt="" /> 
-        */}
-        {/* <div className="pb-6">
-          <SliderImage />
-        </div> */}
-        <TextUserName />
-        <ButtonBaseComponents
-          image={buttonNext}
-          label={"NEXT"}
-          classTextStyling={{
-            fontSize: "20px",
-            fontWeight: "700px"
-          }}
-          onClick={() => console.log("dadada")}
-        />
+          <div className="justify-center items-center" style={{ display:"Block", width:"100%" }}>
+              <div className="pb-6" style={{ marginLeft:"35%", marginRight:"35%" }}>{renderImage()}</div>
+          </div>
+          {/*
+          if 0 correct showing this
+          <img src={thanksPlaying} alt="" /> 
+          */}
+          <TextUserName />
+          <ButtonBaseComponents
+            image={buttonNext}
+            label={"NEXT"}
+            classTextStyling={{
+              fontSize: "20px",
+              fontWeight: "700px"
+            }}
+            onClick={() => console.log("dadada")}
+          />
       </div>
       {isShowBasicModal && <SharePage onClose={onClose} />}
     </div>
