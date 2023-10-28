@@ -72,13 +72,20 @@ const AvatarSlider = (props: any) => {
             indicators={false}
             navButtonsAlwaysVisible={true}
             autoPlay={false}
-
+            navButtonsProps={{          // Change the colors and radius of the actual buttons. THIS STYLES BOTH BUTTONS
+                style: {
+                    backgroundColor: 'rgba(255, 0, 0, 0.1)',
+                    marginLeft:"-10px",
+                    marginRight:'-10px',
+                }
+                
+            }} 
             next={ (now, active) => setAvatar(items[now || 0].avatar) }
             prev={ (now, active) => setAvatar(items[now || 0].avatar) }
         >
             {
                 items.map((item, i) => (
-                    <img src={item.avatar} key={i} alt="" style={{"height" : "200px", width:"100%"}}/>
+                    <img src={item.avatar} key={i} alt="" style={{width:"70%", marginLeft:"15%", marginRight:"15%", paddingTop: "24px"}}/>
                 ))
             }
         </Carousel>

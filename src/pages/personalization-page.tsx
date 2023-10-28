@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -19,18 +20,19 @@ import { FormEvent } from "react";
 import SharePage from "../components/ModalsShare";
 import avatar_default from "../assets/avatar/avatar_1.svg";
 
-  const supabase = createClient("https://zgogwulfztkwjlkmkuxv.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpnb2d3dWxmenRrd2psa21rdXh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTc3NjUxMjMsImV4cCI6MjAxMzM0MTEyM30.ZEYrZCP_tuJCM0tDPatn0eGe7r6wv4nIwmoM6CSb3Z4");
+ 
 
 
-
-  const ResultPage = () => {
+const ResultPage = () => {
   const { state: dataQuestions } = useLocation();
   const navigate = useNavigate();
   const backgroundImageStyle = {
     backgroundImage: `url(${background})`,
   };
 
-  
+  const supabase = createClient("https://zgogwulfztkwjlkmkuxv.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpnb2d3dWxmenRrd2psa21rdXh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTc3NjUxMjMsImV4cCI6MjAxMzM0MTEyM30.ZEYrZCP_tuJCM0tDPatn0eGe7r6wv4nIwmoM6CSb3Z4");
+
+
   const textScoreBoard = {
     fontFamily: "BioRhyme",
     fontSize: "20px",
@@ -97,7 +99,7 @@ import avatar_default from "../assets/avatar/avatar_1.svg";
         }
         return (
           <div>
-            {renderText("CONGRATULATION!")}
+            {renderText("CONGRATULATION!", "24px", "800")}
             {renderQuestionScore(total+"")}
           </div>
         )
@@ -108,15 +110,17 @@ import avatar_default from "../assets/avatar/avatar_1.svg";
   const renderNoDataFound = () => {
     return (
       <div>
-        {renderText("THANK YOU")}
-        {renderText("FOR PLAYING!")}
+        {renderText("THANK YOU", "24px", "800")}
+        {renderText("FOR PLAYING!", "24px", "800")}
       </div>
     );
   };
 
-  const renderText = (label: string) => {
+  const renderText = (label: string, fontSize: string, fontWeight: string ) => {
     
-    return <div className="flex justify-center items-center">{label}</div>;
+    return <div 
+    style={{ fontSize: fontSize, fontWeight: fontWeight }}
+    className="flex justify-center items-center">{label}</div>;
     
   };
 
@@ -130,7 +134,7 @@ import avatar_default from "../assets/avatar/avatar_1.svg";
     let point = parseInt(label) * 10;
     return (
       <div
-        style={{ fontSize: "11px" }}
+        style={{ fontSize: "16px", fontWeight: "400" }}
         className="flex justify-center items-center text-center font-normal"
       >
         You have earned {point} points!
@@ -176,8 +180,8 @@ import avatar_default from "../assets/avatar/avatar_1.svg";
 
   const renderImageByPoint = () => {
     if(total > 0) {
-      return (<div className="justify-center items-center" style={{ display:"Block", width: width > 788 ? '25%' : '85%' }}>
-        <div className="pb-6" >{renderImage()}</div>
+      return (<div className="justify-center items-center" style={{ display:"Block", width: width > 788 ? '25%' : '95%' }}>
+        <div className="" style={{ paddingBottom:"24px" }}>{renderImage()}</div>
       </div>)
     }else {
       return (<div>{renderImage()}</div>)
@@ -192,7 +196,7 @@ import avatar_default from "../assets/avatar/avatar_1.svg";
       <div style={textScoreBoard} className="pt-20 pb-4">
         {renderResultText()}
       </div>
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center" >
           {renderImageByPoint()}
          
           <TextUserName 
@@ -206,7 +210,7 @@ import avatar_default from "../assets/avatar/avatar_1.svg";
             label={"NEXT"}
             classTextStyling={{
               fontSize: "20px",
-              fontWeight: "700px"
+              fontWeight: "700px",
             }}
             onClick={(eve) => {
               if(total < 1) {

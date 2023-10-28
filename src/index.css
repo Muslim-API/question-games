@@ -22,6 +22,15 @@ code {
   border-width: 2px;
 }
 
+/* Button test */
+button[aria-label='Previous'] {
+  left:0;
+} 
+
+button[aria-label='Next'] {
+  right:0;
+}
+
 @media (min-width: 320px) and (max-width: 359px) {
   .image-bg-home {
     background-image: url("assets/mobile/homescreen.svg");

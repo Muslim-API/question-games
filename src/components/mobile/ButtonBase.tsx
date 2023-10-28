@@ -22,7 +22,7 @@ const ButtonBaseComponents = ({
   classTextStyling?: TextStyling;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }) => (
-  <div className="pb-2.5">
+  <div className="" style={{paddingBottom: "24px"}}>
     <ButtonBase style={{}} className={classStyling} onClick={onClick}>
       {/* <img src={buttonResult} /> */}
       <img src={image} />
