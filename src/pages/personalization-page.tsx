@@ -14,8 +14,10 @@ import { ECO_LEVEL } from "../constants/level";
 
 import SharePage from "../components/ModalsShare";
 
-const supabase = createClient("", "");
-
+const supabase = createClient(
+  "https://zgogwulfztkwjlkmkuxv.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpnb2d3dWxmenRrd2psa21rdXh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTc3NjUxMjMsImV4cCI6MjAxMzM0MTEyM30.ZEYrZCP_tuJCM0tDPatn0eGe7r6wv4nIwmoM6CSb3Z4"
+);
 
 const ResultPage = () => {
   const { state: dataQuestions } = useLocation();
@@ -24,7 +26,7 @@ const ResultPage = () => {
     backgroundImage: `url(${background})`,
   };
 
-  console.log("dataQuestionsdataQuestionsdataQuestions", dataQuestions)
+  console.log("dataQuestionsdataQuestionsdataQuestions", dataQuestions);
 
   const textScoreBoard = {
     fontFamily: "BioRhyme",
@@ -41,23 +43,23 @@ const ResultPage = () => {
     setIsShowBasicModal(false);
   };
 
-  const Buttons = [
-    {
-      id: "btnShare",
-      label: "Share",
-      onClick: () => setIsShowBasicModal(true),
-    },
-    {
-      id: "btnCaseStudy",
-      label: "Case Study",
-      onClick: () => navigate("/case-study-page"),
-    },
-    {
-      id: "btnScoreBoard",
-      label: "Scoreboard",
-      onClick: () => navigate("/live-score-page"),
-    },
-  ];
+  // const Buttons = [
+  //   {
+  //     id: "btnShare",
+  //     label: "Share",
+  //     onClick: () => setIsShowBasicModal(true),
+  //   },
+  //   {
+  //     id: "btnCaseStudy",
+  //     label: "Case Study",
+  //     onClick: () => navigate("/case-study-page"),
+  //   },
+  //   {
+  //     id: "btnScoreBoard",
+  //     label: "Scoreboard",
+  //     onClick: () => navigate("/live-score-page"),
+  //   },
+  // ];
 
   const data: { [key: string]: number } = dataQuestions ?? {};
   const total: number = Object.values(data).reduce(
@@ -114,21 +116,20 @@ const ResultPage = () => {
   };
 
   const submitScores = async () => {
-    console.log("hit")
+    console.log("hit");
     const result = await supabase.from("scoreboard").insert({
-        id: uuidv4(),
-        created_at: new Date().toISOString(),
-        player: "ANDRIES",
-        avatar: "AVATAR_MALE_BLUE",
-        score: 50
+      id: uuidv4(),
+      created_at: new Date().toISOString(),
+      player: "oottoohh",
+      avatar: "AVATAR_FLOAT",
+      score: 100,
     });
-    console.log("result", result)
+    console.log("result", result);
     // if(result.status === HTTP_CREATED){
     //     // TODO this will bring to public live scoreboard
     //     // navigate('/public-live-score')
     // }
-}
-  
+  };
 
   return (
     <div className="h-screen bg-cover bg-center" style={backgroundImageStyle}>
@@ -151,7 +152,7 @@ const ResultPage = () => {
           label={"NEXT"}
           classTextStyling={{
             fontSize: "20px",
-            fontWeight: "700px"
+            fontWeight: "700px",
           }}
           onClick={submitScores}
         />
