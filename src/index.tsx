@@ -15,6 +15,7 @@ import QuestionScreen from "./pages/question-page";
 import ResultPage from "./pages/result-page";
 import ShareYourScore from "./pages/share-your-score";
 import reportWebVitals from "./reportWebVitals";
+import PersonalContributionPage from "./pages/personal-contribution-page";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,11 @@ const router = createBrowserRouter([
       {
         path: "personalization-page",
         element: <PersonalizationPage />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "personal-contribution-page",
+        element: <PersonalContributionPage />,
         errorElement: <ErrorPage />,
       },
     ],
