@@ -1,10 +1,10 @@
+import { createClient } from "@supabase/supabase-js";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import background from "../assets/mobile/background.svg";
 import buttonNext from "../assets/result/button-next.svg";
 import thanksPlaying from "../assets/result/thanks-playing.svg";
-// import { createClient } from "@supabase/supabase-js";
-// import { v4 as uuidv4 } from "uuid";
 // import SliderImage from "../components/carousel/ResultSlider";
 import HeaderSoundAndBackClose from "../components/mobile/HeaderSoundAndClose";
 import TextUserName from "../components/text/TextUserName";
@@ -14,7 +14,7 @@ import { ECO_LEVEL } from "../constants/level";
 
 import SharePage from "../components/ModalsShare";
 
-// const supabase = createClient("google.com", "as");
+const supabase = createClient("", "");
 
 
 const ResultPage = () => {
@@ -114,13 +114,15 @@ const ResultPage = () => {
   };
 
   const submitScores = async () => {
-    // const result = await supabase.from("scoreboard").insert({
-    //     id: uuidv4(),
-    //     created_at: new Date().toISOString(),
-    //     player,
-    //     avatar,
-    //     score
-    // });
+    console.log("hit")
+    const result = await supabase.from("scoreboard").insert({
+        id: uuidv4(),
+        created_at: new Date().toISOString(),
+        player: "ANDRIES",
+        avatar: "AVATAR_MALE_BLUE",
+        score: 50
+    });
+    console.log("result", result)
     // if(result.status === HTTP_CREATED){
     //     // TODO this will bring to public live scoreboard
     //     // navigate('/public-live-score')
@@ -151,7 +153,7 @@ const ResultPage = () => {
             fontSize: "20px",
             fontWeight: "700px"
           }}
-          onClick={() => console.log("dadada")}
+          onClick={submitScores}
         />
       </div>
       {isShowBasicModal && <SharePage onClose={onClose} />}

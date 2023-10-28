@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import liveScore from "../assets/livescore/public-live-score.svg";
 import background from "../assets/mobile/background.svg";
@@ -13,30 +13,27 @@ import ProgressScoreBoard from "../components/progress/scoreboard";
 
 import AvatarUserScore from "../components/userscores/avatar";
 
+import { SupabaseContext } from "../utils/socket";
+
 const PublicLiveScore = () => {
   const navigate = useNavigate();
-  // const supabase = useContext(SupabaseContext);
+  const supabase = useContext(SupabaseContext);
   const [user, setUser] = useState<string>()
 
   const handleInserts = (payload: any) => {
-    setUser(payload?.new?.player)
-    // {
-    //   player,
-    //   name,
-    //   avatar,
-
-    // }
+    // setUser(payload?.new?.player)
+   console.log("paayyload", payload)
   }
 
-  // useEffect(() => {
-  //   const scoreboardChannel = supabase
-  //     .channel('scoreboard') 
-  //     .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'scoreboard' }, handleInserts)
-  //     .subscribe();
-  //   return () => {
-  //     scoreboardChannel.unsubscribe();
-  //   };
-  // }, [supabase]);
+  useEffect(() => {
+    const scoreboardChannel = supabase
+      .channel('scoreboard') 
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'scoreboard' }, handleInserts)
+      .subscribe();
+    return () => {
+      scoreboardChannel.unsubscribe();
+    };
+  }, [supabase]);
 
   const backgroundImageStyle = {
     backgroundImage: `url(${background})`,
