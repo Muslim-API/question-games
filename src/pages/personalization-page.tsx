@@ -3,8 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import background from "../assets/mobile/background.svg";
 import buttonNext from "../assets/result/button-next.svg";
 import thanksPlaying from "../assets/result/thanks-playing.svg";
-// import { createClient } from "@supabase/supabase-js";
-// import { v4 as uuidv4 } from "uuid";
+import { createClient } from "@supabase/supabase-js";
+import { v4 as uuidv4 } from "uuid";
 import SliderImage from "../components/carousel/ResultSlider";
 import HeaderSoundAndBackClose from "../components/mobile/HeaderSoundAndClose";
 import TextUserName from "../components/text/TextUserName";
@@ -15,11 +15,12 @@ import { ECO_LEVEL } from "../constants/level";
 import { FormEvent } from "react";
 
 import SharePage from "../components/ModalsShare";
+import avatar from "../assets/avatar/avatar_1.svg";
 
-// const supabase = createClient("google.com", "as");
+  const supabase = createClient("https://zgogwulfztkwjlkmkuxv.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpnb2d3dWxmenRrd2psa21rdXh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTc3NjUxMjMsImV4cCI6MjAxMzM0MTEyM30.ZEYrZCP_tuJCM0tDPatn0eGe7r6wv4nIwmoM6CSb3Z4");
 
 
-const ResultPage = () => {
+  const ResultPage = () => {
   const { state: dataQuestions } = useLocation();
   const navigate = useNavigate();
   const backgroundImageStyle = {
@@ -38,6 +39,8 @@ const ResultPage = () => {
 
   const [isShowBasicModal, setIsShowBasicModal] = useState(false);
   const [userName, setUserName] = useState("");
+
+  const HTTP_CREATED = 201;
   
 
   const onClose = () => {
@@ -69,7 +72,9 @@ const ResultPage = () => {
   );
 
   const renderImage = () => {
-    // return <img src={thanksPlaying} alt="" />;
+    if(total < 1) {
+      return <img src={thanksPlaying} alt="" />;
+    }
     return (
       <div style={{width:"100%"}}>
         {SliderImage()}
@@ -78,13 +83,17 @@ const ResultPage = () => {
   };
 
   const renderResultText = () => {
+    
     if (dataQuestions) {
-      return (
-        <div>
-          {renderText("CONGRATULATION!")}
-          {renderQuestionScore(total+"")}
-        </div>
-      );
+        if(total < 1) {
+          return renderNoDataFound();
+        }
+        return (
+          <div>
+            {renderText("CONGRATULATION!")}
+            {renderQuestionScore(total+"")}
+          </div>
+        )
     }
     return renderNoDataFound();
   };
@@ -94,13 +103,14 @@ const ResultPage = () => {
       <div>
         {renderText("THANK YOU")}
         {renderText("FOR PLAYING!")}
-        {renderQuestionScore("", true)}
       </div>
     );
   };
 
   const renderText = (label: string) => {
+    
     return <div className="flex justify-center items-center">{label}</div>;
+    
   };
 
   const renderQuestionScore = (
@@ -122,17 +132,20 @@ const ResultPage = () => {
   };
 
   const submitScores = async () => {
-    // const result = await supabase.from("scoreboard").insert({
-    //     id: uuidv4(),
-    //     created_at: new Date().toISOString(),
-    //     player,
-    //     avatar,
-    //     score
-    // });
-    // if(result.status === HTTP_CREATED){
-    //     // TODO this will bring to public live scoreboard
-    //     // navigate('/public-live-score')
-    // }
+    const player = userName;
+    const score = total;
+    const result = await supabase.from("scoreboard").insert({
+        id: uuidv4(),
+        created_at: new Date().toISOString(),
+        player,
+        avatar,
+        score
+    });
+    if(result.status === HTTP_CREATED){
+        // TODO this will bring to public live scoreboard
+        // navigate('/public-live-score')
+        navigate("/personal-contribution-page",  { state: {dataQuestions:dataQuestions,userName:userName} });
+    }
   }
 
   const [width, setWidth] = useState<number>(window.innerWidth);
@@ -152,25 +165,32 @@ const ResultPage = () => {
   const handleChange = (event: Event) => {
     setUserName((event.target as HTMLInputElement).value);
   };
+
+  const renderImageByPoint = () => {
+    if(total > 0) {
+      return (<div className="justify-center items-center" style={{ display:"Block", width: width > 788 ? '25%' : '85%' }}>
+        <div className="pb-6" >{renderImage()}</div>
+      </div>)
+    }else {
+      return (<div>{renderImage()}</div>)
+    }
+  }
   
 
   return (
+
     <div className="h-screen bg-cover bg-center" style={backgroundImageStyle}>
       <HeaderSoundAndBackClose onClickClose={() => navigate("/")} />
       <div style={textScoreBoard} className="pt-20 pb-4">
         {renderResultText()}
       </div>
       <div className="flex flex-col justify-center items-center">
-          <div className="justify-center items-center" style={{ display:"Block", width: width > 788 ? '25%' : '85%' }}>
-              <div className="pb-6" >{renderImage()}</div>
-          </div>
-          {/*
-          if 0 correct showing this
-          <img src={thanksPlaying} alt="" /> 
-          */}
+          {renderImageByPoint()}
+         
           <TextUserName 
             value = {userName}
             type = "text"
+            totalPoint = {total}
             onChange = {handleChange}
           />
           <ButtonBaseComponents
@@ -181,7 +201,13 @@ const ResultPage = () => {
               fontWeight: "700px"
             }}
             onClick={(eve) => {
-              navigate("/personal-contribution-page",  { state: {dataQuestions:dataQuestions,userName:userName} });
+              if(total < 1) {
+                navigate("/");
+              }else {
+                submitScores()
+              }
+             
+              
             }}
           />
       </div>

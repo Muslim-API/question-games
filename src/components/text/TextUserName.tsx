@@ -35,10 +35,18 @@ const CssTextField = styled(TextField)({
 
 
 export default function TextUserName(props: any) {
-  const {value, onChange} = props;
-  return (
-    <div className="pb-8">
-        <CssTextField id="custom-css-outlined-input" placeholder="Enter your name" value={value} onChange={onChange}/>
-    </div>
-  );
+  const {value, onChange, totalPoint} = props;
+  if(totalPoint > 0) {
+    return (
+      <div className="pb-8">
+          <CssTextField id="custom-css-outlined-input" placeholder="Enter your name" value={value} onChange={onChange}/>
+      </div>
+    );
+  }else {
+    return (
+      <div className="pb-8">
+        
+      </div>
+    );
+  }
 }

@@ -102,7 +102,7 @@ const ResultPage = () => {
 
   const renderBottomText = () => {
     return (
-      <div style={{fontSize:"15px", textAlign:"center"}} >
+      <div style={{fontSize:"15px", textAlign:"center", "paddingLeft": '10%', "paddingRight": '10%'}} >
         {"Thank you for doing your part for sustainability!"}
       </div>
     );
@@ -165,7 +165,7 @@ const ResultPage = () => {
       </div>
       <div className="flex flex-col justify-center items-center">
         <div className="pb-6">{renderImage()}</div>
-        <div style={textScoreBoard} className="pb-4" >
+        <div style={textScoreBoard} className="" >
           {renderNameText()}
         </div>
         <div style={textScoreBoard} className="pt-5 pb-4">
