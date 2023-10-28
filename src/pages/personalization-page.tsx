@@ -5,7 +5,9 @@ import { v4 as uuidv4 } from "uuid";
 import background from "../assets/mobile/background.svg";
 import buttonNext from "../assets/result/button-next.svg";
 import thanksPlaying from "../assets/result/thanks-playing.svg";
+
 import SliderImage from "../components/carousel/ResultSlider";
+
 import HeaderSoundAndBackClose from "../components/mobile/HeaderSoundAndClose";
 import TextUserName from "../components/text/TextUserName";
 
@@ -18,6 +20,7 @@ import SharePage from "../components/ModalsShare";
 import avatar_default from "../assets/avatar/avatar_1.svg";
 
   const supabase = createClient("https://zgogwulfztkwjlkmkuxv.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpnb2d3dWxmenRrd2psa21rdXh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTc3NjUxMjMsImV4cCI6MjAxMzM0MTEyM30.ZEYrZCP_tuJCM0tDPatn0eGe7r6wv4nIwmoM6CSb3Z4");
+
 
 
   const ResultPage = () => {
