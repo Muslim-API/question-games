@@ -74,7 +74,7 @@ const AvatarSlider = (props: any) => {
             autoPlay={false}
             navButtonsProps={{          // Change the colors and radius of the actual buttons. THIS STYLES BOTH BUTTONS
                 style: {
-                    backgroundColor: 'rgba(255, 0, 0, 0.1)',
+                    backgroundColor: 'rgba(255, 0, 0, 0)',
                     marginLeft:"-10px",
                     marginRight:'-10px',
                 }
