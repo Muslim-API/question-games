@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
+import { createClient } from "@supabase/supabase-js";
 import { useLocation, useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import background from "../assets/mobile/background.svg";
 import buttonNext from "../assets/result/button-next.svg";
 import thanksPlaying from "../assets/result/thanks-playing.svg";
-import { createClient } from "@supabase/supabase-js";
-import { v4 as uuidv4 } from "uuid";
 import SliderImage from "../components/carousel/ResultSlider";
 import HeaderSoundAndBackClose from "../components/mobile/HeaderSoundAndClose";
 import TextUserName from "../components/text/TextUserName";
