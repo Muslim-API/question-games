@@ -15,7 +15,7 @@ import { ECO_LEVEL } from "../constants/level";
 import { FormEvent } from "react";
 
 import SharePage from "../components/ModalsShare";
-import avatar from "../assets/avatar/avatar_1.svg";
+import avatar_default from "../assets/avatar/avatar_1.svg";
 
   const supabase = createClient("https://zgogwulfztkwjlkmkuxv.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpnb2d3dWxmenRrd2psa21rdXh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTc3NjUxMjMsImV4cCI6MjAxMzM0MTEyM30.ZEYrZCP_tuJCM0tDPatn0eGe7r6wv4nIwmoM6CSb3Z4");
 
@@ -39,6 +39,9 @@ import avatar from "../assets/avatar/avatar_1.svg";
 
   const [isShowBasicModal, setIsShowBasicModal] = useState(false);
   const [userName, setUserName] = useState("");
+  const [avatar, setAvatar] = useState(avatar_default);
+
+  console.log('avatar', avatar)
 
   const HTTP_CREATED = 201;
   
@@ -77,10 +80,11 @@ import avatar from "../assets/avatar/avatar_1.svg";
     }
     return (
       <div style={{width:"100%"}}>
-        {SliderImage()}
+        {<SliderImage setAvatar={setAvatar} />}
       </div>)
     ;
   };
+  
 
   const renderResultText = () => {
     
@@ -144,7 +148,7 @@ import avatar from "../assets/avatar/avatar_1.svg";
     if(result.status === HTTP_CREATED){
         // TODO this will bring to public live scoreboard
         // navigate('/public-live-score')
-        navigate("/personal-contribution-page",  { state: {dataQuestions:dataQuestions,userName:userName} });
+        navigate("/personal-contribution-page",  { state: {dataQuestions:dataQuestions,userName:userName,avatar:avatar} });
     }
   }
 
@@ -153,6 +157,7 @@ import avatar from "../assets/avatar/avatar_1.svg";
   function handleWindowSizeChange() {
       setWidth(window.innerWidth);
   }
+
   useEffect(() => {
       window.addEventListener('resize', handleWindowSizeChange);
       return () => {

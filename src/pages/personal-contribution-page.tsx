@@ -22,6 +22,7 @@ import SharePage from "../components/ModalsShare";
 const ResultPage = () => {
   const { state: dataQuestions } = useLocation();
   const { state: userName } = useLocation();
+  const { state: avatar } = useLocation();
   const navigate = useNavigate();
   const backgroundImageStyle = {
     backgroundImage: `url(${background})`,
@@ -70,7 +71,7 @@ const ResultPage = () => {
   );
 
   const renderImage = () => {
-    return <img src={avatar} alt="" />;
+    return <img src={avatar.avatar} alt="" />;
     switch (total) {
       case 0:
         return <img src={thanksPlaying} alt="" />;
