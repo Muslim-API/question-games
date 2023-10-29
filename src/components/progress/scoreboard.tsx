@@ -4,7 +4,6 @@ import LinearProgress, {
 } from "@mui/material/LinearProgress";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
-import "./style.css";
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 20,
@@ -64,7 +63,7 @@ export default function ProgressBar() {
         {renderCircular(0, {
           left: 10,
         })}
-        <BorderLinearProgress variant="determinate" value={100} />
+        <BorderLinearProgress variant="determinate" value={50} />
         {renderCircular(500, {
           left: -10,
           zIndex: 9,
